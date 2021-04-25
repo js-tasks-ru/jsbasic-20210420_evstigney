@@ -12,7 +12,7 @@ function print(text) {
 function isValid(name) {
   let userName = !!name && name.trim();
 
-  return (userName.length >= 4) ? !userName.includes(" ") : false;
+  return (userName.length >= 4) && !userName.includes(" ");
 }
 
 function sayHello() {
