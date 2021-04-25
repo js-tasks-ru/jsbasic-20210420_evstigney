@@ -10,9 +10,9 @@ function print(text) {
  * чтобы функция sayHello работала корректно
  */
 function isValid(name) {
-  name = !!name && name.trim();
+  let userName = !!name && name.trim();
 
-  return (name.length >= 4) ? !name.includes(" ") : false;
+  return (userName.length >= 4) ? !userName.includes(" ") : false;
 }
 
 function sayHello() {
