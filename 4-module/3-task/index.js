@@ -1,39 +1,43 @@
 function highlight(table) {
-  const columnValues = {
-    1: function age(elem) {
+  const AGE_COLUMN = 1;
+  const GENDER_COLUMN = 2;
+  const STATUS_COLUMN = 3;
 
+  const getRowStyles = (elem, index) => {
+    const tr = elem.closest('tr');
+
+    const rowStyles = {
+      [AGE_COLUMN]: function() {
         if (elem.textContent < 18) {
-          elem.closest('tr')
-              .style.textDecoration = 'line-through';
+          tr.style.textDecoration = 'line-through';
         }
-        
       },
-    2: function sex(elem) {
-        elem.closest('tr')
-            .classList
-            .add((elem.textContent === 'm') ? 'male' : 'female');
+      [GENDER_COLUMN]: function() {
+        tr.classList
+          .add((elem.textContent === 'm') ? 'male' : 'female');
       },
-    3: function status(elem) {
+      [STATUS_COLUMN]: function() {
         let isAvailable = elem.dataset.available;
-
+  
         if (isAvailable) {
-          elem.closest('tr')
-              .classList
-              .add((isAvailable === 'true') ? 'available' : 'unavailable');
+          tr.classList
+            .add((isAvailable === 'true') ? 'available' : 'unavailable');
           return;
         }
-
-        elem.closest('tr').hidden = true;
+  
+        tr.hidden = true;
       },
-  };
+    };
 
+    return rowStyles[index]();
+  };
+    
   [...table.tBodies[0].rows].map((row) => {
 
-    for (let i = 1; i < row.cells.length; i++) {
-      let cell = [...row.cells][i];
-      columnValues[i](cell);
+    for (let columnIndex = 1; columnIndex < row.cells.length; columnIndex++) {
+      let cell = [...row.cells][columnIndex];
+      getRowStyles(cell, columnIndex);
     }
 
   });
-
 }
