@@ -1,3 +1,5 @@
 function makeDiagonalRed(table) {
-  // ваш код...
+  [...table.rows].forEach(({cells}, index) => {
+    cells[index].style.backgroundColor = 'red';
+  });
 }
