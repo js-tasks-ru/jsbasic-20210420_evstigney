@@ -32,6 +32,8 @@ export default class ProductCard {
     this._card = createElement(this._template);
 
     this._onButtonClick = this._onButtonClick.bind(this);
+
+    this.elem = this._getElem();
   }
 
   _onButtonClick () {
@@ -43,8 +45,9 @@ export default class ProductCard {
     this._card.dispatchEvent(evt);
   }
 
-  get elem () {
-    this._card.querySelector('.card__button').addEventListener('click', this._onButtonClick);
+  _getElem = () => {
+    this._card.querySelector('.card__button')
+              .addEventListener('click', this._onButtonClick);
     return this._card;
   }
 

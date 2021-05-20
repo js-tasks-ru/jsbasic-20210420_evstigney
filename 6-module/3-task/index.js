@@ -61,6 +61,8 @@ export default class Carousel {
     this._rotateSlider = this._rotateSlider.bind(this);
     this._generateProductAddEvent = this._generateProductAddEvent.bind(this);
     this._clickHandler = this._clickHandler.bind(this);
+
+    this.elem = this._getElem();
   }
 
   _checkShift (width) {
@@ -107,7 +109,7 @@ export default class Carousel {
     if (evt.target.closest('.carousel__button')) this._generateProductAddEvent(evt);
   }
 
-  get elem () {
+  _getElem = () => {
     this._arrowLeft.style.display = 'none';
     this._carousel.addEventListener('click', this._clickHandler);
     
