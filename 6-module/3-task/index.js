@@ -83,10 +83,11 @@ export default class Carousel {
 
   _rotateSlider (evt) {
     const width = this._slideContainer.offsetWidth;
+    const target = evt.target.closest('.carousel__arrow');
 
-    if (evt.target === this._arrowLeft) this._shift += width;
+    if (target === this._arrowLeft) this._shift += width;
 
-    if (evt.target === this._arrowRight) this._shift -= width;;
+    if (target === this._arrowRight) this._shift -= width;
 
     this._checkShift(width);
     this._slideContainer.style.transform = `translateX(${this._shift}px)`;
@@ -112,7 +113,7 @@ export default class Carousel {
   _getElem = () => {
     this._arrowLeft.style.display = 'none';
     this._carousel.addEventListener('click', this._clickHandler);
-    
+
     return this._carousel;
   }
 }
